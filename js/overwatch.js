@@ -62,7 +62,7 @@ audio.src = 'Sound_18678.mp3';
             },'json');
 
 
-        },10000);
+        },15000);
 
 
         $(window).on('focus', function(){
@@ -134,7 +134,7 @@ audio.src = 'Sound_18678.mp3';
             },'json');
 
 
-        },15000);
+        },18000);
 
 
         $(window).on('focus', function(){
@@ -208,7 +208,7 @@ audio.src = 'Sound_18678.mp3';
             },'json');
 
 
-        },15000);
+        },30000);
 
         $(window).on('focus', function(){
             $.each(items, function(index, el){
@@ -301,7 +301,7 @@ audio.src = 'Sound_18678.mp3';
         'https://freelance.ru/projects/',
     ];
     var current = 0;
-    var classname = 'fl';
+    var classname = 'freelanceru';
 
     var container = null;
     //var server = 'http://localhost';
@@ -359,7 +359,7 @@ audio.src = 'Sound_18678.mp3';
                 });
             });
 
-        },100000);
+        },25000);
 
 
     }

@@ -7,16 +7,17 @@
 
 function parseFreelanceru($html = ''){
 
+	$html = iconv('windows-1251', 'utf-8', $html);
 	$document = phpQuery::newDocument($html);
-	$links = $document->find('a.ptitle');
+	$links = $document->find('.proj a.ptitle');
 	$items = [];
 	foreach($links as $link){
 
-		$href = "https://www.fl.ru".pq($link)->attr('href');
+		$href = "https://freelance.ru".pq($link)->attr('href');
 
 
 		$id = (int)substr($href,-11,6);
-		$title = $link->nodeValue;
+		$title =  $link->nodeValue;
 
 		$items[] = [
 			'id' => $id,

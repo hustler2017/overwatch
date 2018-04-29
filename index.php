@@ -5,7 +5,9 @@ include 'include/weblancer.php';
 include 'include/fl.php';
 include 'include/freelansim.php';
 include 'include/freelancehunt.php';
+include 'include/freelanceru.php';
 
+//header("Access-Control-Allow-Origin: http://localhost");
 header("Access-Control-Allow-Origin: http://overwatch.onequiz.ru");
 
 if(isset($_POST['update'])){
@@ -33,7 +35,7 @@ if(isset($_POST['update'])){
 		    break;
 
     }
-//https://freelance.ru/projects/
+
     echo json_encode(['ok' => true, 'list' => $items]);
     exit;
 }
@@ -43,6 +45,7 @@ if(isset($_POST['update'])){
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-store" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Bootstrap 101 Template</title>
 
@@ -64,12 +67,15 @@ if(isset($_POST['update'])){
         }
         li{
             display: block;
-            border-radius: 3px;
-            padding: 4px;
-            background-color: #f99b3a;
+            padding: 2px 6px;
+            background-color: #cde4ff;
             transition: all 10s ease;
             color: black;
-            margin-bottom: 1px;
+            border-radius: 9px;
+            margin: 7px;
+            -webkit-box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.25);
+            -moz-box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.25);
+            box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.25);
         }
         li a{
             text-decoration: none;
@@ -79,9 +85,10 @@ if(isset($_POST['update'])){
             font-family: "Segoe UI";
         }
         li.new{
-            background-color: rgba(34, 156, 156, 0.21176470588235294);
+            background-color: #28d6d6ab;
             transition: all 15s ease;
         }
+
         .cols{
             display: flex;
         }
@@ -92,10 +99,17 @@ if(isset($_POST['update'])){
             border: 1px solid #1876b8;
             margin: 10px;
             overflow: hidden;
+
+            -webkit-box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.7);
+            -moz-box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.7);
+            box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.26);
         }
         .cols  .content{
-            height: 500px;
+            height: 800px;
             overflow-y: scroll;
+            -webkit-box-shadow: inset 0px 1px 2px 1px rgba(0,0,0,0.25);
+            -moz-box-shadow: inset 0px 1px 2px 1px rgba(0,0,0,0.25);
+            box-shadow: inset 0px 1px 2px 1px rgba(0,0,0,0.25);
         }
         .head{
             height: 30px;
@@ -104,6 +118,15 @@ if(isset($_POST['update'])){
             text-align: center;
             padding-top: 4px;
         }
+        .cols .head a{
+            color: white;
+            font-family: Segoe UI;
+            font-size: 16px;
+            text-transform: uppercase;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px black, 0 0 1em #53bfd8;
+        }
+
     </style>
 </head>
 <body>
@@ -118,7 +141,9 @@ if(isset($_POST['update'])){
 <div class="cols">
     <div class="weblancer">
         <div class="head">
-            WebLancer
+            <a target="_blank" href="https://www.weblancer.net/">
+                weblancer.net
+            </a>
         </div>
         <div class="content">
             <ul class="list">
@@ -128,7 +153,9 @@ if(isset($_POST['update'])){
     </div>
     <div class="freelansim">
         <div class="head">
-            freelansim
+            <a target="_blank" href="https://freelansim.ru/">
+                freelansim.ru
+            </a>
         </div>
         <div class="content">
             <ul class="list">
@@ -138,7 +165,9 @@ if(isset($_POST['update'])){
     </div>
     <div class="freelancehunt">
         <div class="head">
-            freelancehunt
+            <a target="_blank" href="https://freelancehunt.com/">
+                freelancehunt.com
+            </a>
         </div>
         <div class="content">
             <ul class="list">
@@ -149,7 +178,9 @@ if(isset($_POST['update'])){
 
     <div class="freelanceru">
         <div class="head">
-            freelance.ru
+            <a target="_blank" href="https://freelance.ru/">
+                freelance.ru
+            </a>
         </div>
         <div class="content">
             <ul class="list">
