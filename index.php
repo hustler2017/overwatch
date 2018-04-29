@@ -33,6 +33,9 @@ if(isset($_POST['update'])){
 		    break;
     }
 
+	//header("Access-Control-Allow-Credentials: true");
+	header("Access-Control-Allow-Origin: http://overwatch.onequiz.ru");
+
     echo json_encode(['ok' => true, 'list' => $items]);
     exit;
 }
@@ -55,6 +58,9 @@ if(isset($_POST['update'])){
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
+        body{
+            background-color: #f2fdff;
+        }
         ul{
             list-style: none;
         }
@@ -89,7 +95,7 @@ if(isset($_POST['update'])){
             margin: 10px;
             overflow: hidden;
         }
-        .weblancer .content{
+        .cols  .content{
             height: 500px;
             overflow-y: scroll;
         }
@@ -103,7 +109,14 @@ if(isset($_POST['update'])){
     </style>
 </head>
 <body>
-
+<div style="
+    text-align:  center;
+    font-family: Segoe UI;
+    font-size: 35px;
+    margin: 20px;
+    color: #00ceff;
+    text-shadow: 1px 1px 2px black, 0 0 1em #53bfd8; /* Параметры тени */
+">OverWatch</div>
 <div class="cols">
     <div class="weblancer">
         <div class="head">

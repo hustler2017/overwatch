@@ -13,8 +13,8 @@ audio.src = 'Sound_18678.mp3';
     var classname = 'weblancer';
 
     var container = null;
-    var server = 'http://localhost';
-    //var server = 'https://overwatch.onequiz.ru';
+    //var server = 'http://localhost';
+    var server = 'https://overwatch.onequiz.ru';
 
     function next()
     {
@@ -83,8 +83,8 @@ audio.src = 'Sound_18678.mp3';
     var classname = 'freelancehunt';
 
     var container = null;
-    var server = 'http://localhost';
-    //var server = 'https://overwatch.onequiz.ru';
+    //var server = 'http://localhost';
+    var server = 'https://overwatch.onequiz.ru';
 
     function next()
     {
@@ -155,8 +155,8 @@ audio.src = 'Sound_18678.mp3';
     var classname = 'freelansim';
 
     var container = null;
-    var server = 'http://localhost';
-    //var server = 'https://overwatch.onequiz.ru';
+    //var server = 'http://localhost';
+    var server = 'https://overwatch.onequiz.ru';
 
     function next()
     {
