@@ -14,7 +14,7 @@ audio.src = 'Sound_18678.mp3';
 
     var container = null;
     //var server = 'http://localhost';
-    var server = 'https://overwatch.onequiz.ru';
+    var server = 'http://overwatch.onequiz.ru';
 
     function next()
     {
@@ -55,10 +55,6 @@ audio.src = 'Sound_18678.mp3';
             if(url === false)
                 return;
 
-            $.each(items, function(index, el){
-                $(el).removeClass('new');
-            });
-
             $.post(server,{update:classname, url: url},function(response){
                 if(response.ok) {
                     update(response.list);
@@ -68,6 +64,12 @@ audio.src = 'Sound_18678.mp3';
 
         },10000);
 
+
+        $(window).on('focus', function(){
+            $.each(items, function(index, el){
+                $(el).removeClass('new');
+            });
+        });
 
     }
 })(jQuery);
@@ -84,7 +86,7 @@ audio.src = 'Sound_18678.mp3';
 
     var container = null;
     //var server = 'http://localhost';
-    var server = 'https://overwatch.onequiz.ru';
+    var server = 'http://overwatch.onequiz.ru';
 
     function next()
     {
@@ -125,10 +127,6 @@ audio.src = 'Sound_18678.mp3';
             if(url === false)
                 return;
 
-            $.each(items, function(index, el){
-                $(el).removeClass('new');
-            });
-
             $.post(server,{update:classname, url: url},function(response){
                 if(response.ok) {
                     update(response.list);
@@ -138,6 +136,12 @@ audio.src = 'Sound_18678.mp3';
 
         },15000);
 
+
+        $(window).on('focus', function(){
+            $.each(items, function(index, el){
+                $(el).removeClass('new');
+            });
+        });
 
     }
 })(jQuery);
@@ -156,7 +160,7 @@ audio.src = 'Sound_18678.mp3';
 
     var container = null;
     //var server = 'http://localhost';
-    var server = 'https://overwatch.onequiz.ru';
+    var server = 'http://overwatch.onequiz.ru';
 
     function next()
     {
@@ -197,10 +201,6 @@ audio.src = 'Sound_18678.mp3';
             if(url === false)
                 return;
 
-            $.each(items, function(index, el){
-                $(el).removeClass('new');
-            });
-
             $.post(server,{update:classname, url: url},function(response){
                 if(response.ok) {
                     update(response.list);
@@ -210,6 +210,11 @@ audio.src = 'Sound_18678.mp3';
 
         },15000);
 
+        $(window).on('focus', function(){
+            $.each(items, function(index, el){
+                $(el).removeClass('new');
+            });
+        });
 
     }
 })(jQuery);
@@ -227,7 +232,7 @@ audio.src = 'Sound_18678.mp3';
 
     var container = null;
     //var server = 'http://localhost';
-    var server = 'https://overwatch.onequiz.ru';
+    var server = 'http://overwatch.onequiz.ru';
 
     function next()
     {
@@ -268,9 +273,6 @@ audio.src = 'Sound_18678.mp3';
             if(url === false)
                 return;
 
-            $.each(items, function(index, el){
-                $(el).removeClass('new');
-            });
 
             $.post(server,{update:classname, url: url},function(response){
                 if(response.ok) {
@@ -278,8 +280,86 @@ audio.src = 'Sound_18678.mp3';
                 }
             },'json');
 
+            $(window).on('focus', function(){
+                $.each(items, function(index, el){
+                    $(el).removeClass('new');
+                });
+            });
 
-        },15000);
+        },100000);
+
+
+    }
+})(jQuery);
+
+
+
+(function($){
+
+    var items = [];
+    var quiue = [
+        'https://freelance.ru/projects/',
+    ];
+    var current = 0;
+    var classname = 'fl';
+
+    var container = null;
+    //var server = 'http://localhost';
+    var server = 'http://overwatch.onequiz.ru';
+
+    function next()
+    {
+        if(current >= quiue.length)
+            current = 0;
+
+        if(quiue[current] === undefined)
+            return false;
+
+        return quiue[current++];
+    }
+
+
+    function update(list)
+    {
+        var newItems = false;
+        $.each(list, function(index, el){
+            if(items[el.id] === undefined){
+                items[el.id] = $("<li class='"+classname+" new' data-id='"+el.id+"'><div class='title'><a href='"+
+                    el.href+"' target='_blank'>"+el.title+"</a></div><div class='description'>"+
+                    el.description+"</div><div class='time'>"+
+                    el.time+"</div></li>");
+                items[el.id].prependTo(container);
+                newItems = true;
+            }
+        });
+
+        if(newItems) audio.play();
+    }
+
+    $.fn.overwatchFreelanceru = function(){
+
+        container = this;
+
+        setInterval(function(){
+
+            var url = next();
+            if(url === false)
+                return;
+
+
+            $.post(server,{update:classname, url: url},function(response){
+                if(response.ok) {
+                    update(response.list);
+                }
+            },'json');
+
+            $(window).on('focus', function(){
+                $.each(items, function(index, el){
+                    $(el).removeClass('new');
+                });
+            });
+
+        },100000);
 
 
     }
