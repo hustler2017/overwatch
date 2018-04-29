@@ -8,17 +8,14 @@
 function parseFl($html = ''){
 
 	$document = phpQuery::newDocument($html);
-
-	$links = $document->find('h2 > a.text-bold.show_visited');
-
-
+	$links = $document->find('a.b-post__link');
 	$items = [];
 	foreach($links as $link){
 
-		$href = "https://www.weblancer.net".pq($link)->attr('href');
-		pq($link)->attr('href', $href);
-		pq($link)->attr('target',"_blank");
-		$id = (int)substr($href,-7,6);
+		$href = "https://www.fl.ru".pq($link)->attr('href');
+
+		$id = pq($link)->attr('id');
+		$id = (int)substr($id,-7,7);
 		$title = $link->nodeValue;
 
 		$items[] = [

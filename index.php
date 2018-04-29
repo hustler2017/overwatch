@@ -27,13 +27,14 @@ if(isset($_POST['update'])){
 		    $html = file_get_contents($url);
 		    $items = parseFreelansim($html);
 		    break;
-	    case 'fl':
+	    case 'FL.ru':
+		    ini_set("user_agent","Opera/9.80 (Windows NT 6.1; U; Edition Campaign 21; en-GB) Presto/2.7.62 Version/11.00");
 		    $html = file_get_contents($url);
 		    $items = parseFl($html);
 		    break;
     }
 
-	//header("Access-Control-Allow-Credentials: true");
+
 	header("Access-Control-Allow-Origin: http://overwatch.onequiz.ru");
 
     echo json_encode(['ok' => true, 'list' => $items]);
@@ -148,6 +149,16 @@ if(isset($_POST['update'])){
             </ul>
         </div>
     </div>
+    <div class="fl">
+        <div class="head">
+            FL.ru
+        </div>
+        <div class="content">
+            <ul class="list">
+
+            </ul>
+        </div>
+    </div>
 
 </div>
 
@@ -161,7 +172,7 @@ if(isset($_POST['update'])){
 <script>
     $('.weblancer > .content').overwatchWeblancer();
     $('.freelansim > .content').overwatchFreelansim();
-    //$('.fl').overwatchWeblancer();
+    $('.fl > .content').overwatchFL();
     $('.freelancehunt > .content').overwatchFreelancehunt();
 </script>
 </body>
