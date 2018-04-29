@@ -1,27 +1,39 @@
 <?php
 
+include 'libs/phpquery/phpQuery-onefile.php';
+include 'include/weblancer.php';
+include 'include/fl.php';
+include 'include/freelansim.php';
+include 'include/freelancehunt.php';
 
 
 
+if(isset($_POST['update'])){
 
-if(isset($_REQUEST['update'])){
+    $function = $_POST['update'];
+    $url = isset($_POST['url']) ? $_POST['url'] : '';
+	$items = [];
 
-    switch($_REQUEST['update']){
-        case 'weblancer-page1':
-	        $c = file_get_contents('https://www.weblancer.net/jobs/');
-	        $c = iconv ('windows-1251', 'utf-8', $c);
+    switch($function){
+        case 'weblancer':
+	        $html = file_get_contents($url);
+	        $items = parseWeblancer($html);
             break;
-        case 'weblancer-page2':
-	        $c = file_get_contents('https://www.weblancer.net/jobs/?page=2');
-	        $c = iconv ('windows-1251', 'utf-8', $c);
-	        break;
-	    case 'weblancer-page3':
-		    $c = file_get_contents('https://www.weblancer.net/jobs/?page=3');
-		    $c = iconv ('windows-1251', 'utf-8', $c);
+	    case 'freelancehunt':
+		    $html = file_get_contents($url);
+		    $items = parseFreelancehunt($html);
+		    break;
+	    case 'freelansim':
+		    $html = file_get_contents($url);
+		    $items = parseFreelansim($html);
+		    break;
+	    case 'fl':
+		    $html = file_get_contents($url);
+		    $items = parseFl($html);
 		    break;
     }
 
-    echo $c;
+    echo json_encode(['ok' => true, 'list' => $items]);
     exit;
 }
 ?><!DOCTYPE html>
@@ -71,6 +83,7 @@ if(isset($_REQUEST['update'])){
         }
         .cols > *{
             flex-grow: 1;
+            flex-basis: 100%;
             border-radius: 10px;
             border: 1px solid #1876b8;
             margin: 10px;
@@ -102,6 +115,16 @@ if(isset($_REQUEST['update'])){
             </ul>
         </div>
     </div>
+    <div class="freelansim">
+        <div class="head">
+            freelansim
+        </div>
+        <div class="content">
+            <ul class="list">
+
+            </ul>
+        </div>
+    </div>
     <div class="freelancehunt">
         <div class="head">
             freelancehunt
@@ -121,94 +144,12 @@ if(isset($_REQUEST['update'])){
 <script src="js/jquery.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.js"></script>
+<script src="js/overwatch.js"></script>
 <script>
-
-    var items = [];
-
-    var quiue = {
-        step: 0,
-        links: [
-            {url: 'weblancer-page1', handler: 'weblancer'},
-            {url: 'weblancer-page2', handler: 'weblancer'},
-            {url: 'weblancer-page3', handler: 'weblancer'},
-
-
-    ]};
-
-    var audio = new Audio();
-    audio.src = 'Sound_18678.mp3';
-
-
-
-
-
-    function weblancerHandler(url)
-    {
-        $.post('index.php',{update:url},function(response){
-
-            var page = document.createElement('div');
-            page.innerHTML = response;
-            var cols = $(page).find('h2 > a.text-bold.show_visited');
-            var $list = $('.weblancer .list');
-            var hasNewItems = false;
-            $.each(cols, function(index, elem){
-
-                var link = $(elem).attr('href');
-                var link = 'https://www.weblancer.net'+link;
-                $(elem).attr('href', link);
-                $(elem).attr('target',"_blank");
-                var sNum = link.substr(-7,6);
-                var id = Number(sNum);
-
-                if(items[id] === undefined) {
-                    var desc = $(elem).closest('.row').find('p.text_field').html();
-                    var time_ago = $(elem).closest('.row').find('span.time_ago').html();
-                    var li = document.createElement('li');
-                    li.appendChild(elem);
-                    $(li).append("<div class=\"time_ago\">"+time_ago+"</div>");
-                    $(li).append("<div class=\"desc\">"+desc+"</div>");
-                    $(li).addClass('new');
-                    $(li).prependTo($list);
-                    items[id] = li;
-                    hasNewItems = true;
-                }
-            });
-
-            if(hasNewItems){
-                audio.play();
-            }
-
-            page.innerHTML = '';
-        });
-    }
-
-    function checkUpdate(param)
-    {
-        $.each(items, function(ind, elem){
-            $(elem).closest('li').removeClass('new');
-        });
-
-        switch(param.handler)
-        {
-            case 'weblancer':
-                weblancerHandler(param.url);
-                break;
-        }
-
-
-    }
-
-
-    function update(){
-        if(quiue.step >= quiue.links.length)
-            quiue.step = 0;
-        checkUpdate(quiue.links[quiue.step++]);
-    }
-
-    $(document).ready(function(){
-        setInterval(update,10000);
-        //setTimeout(update,10);
-    });
+    $('.weblancer > .content').overwatchWeblancer();
+    $('.freelansim > .content').overwatchFreelansim();
+    //$('.fl').overwatchWeblancer();
+    $('.freelancehunt > .content').overwatchFreelancehunt();
 </script>
 </body>
 </html>
