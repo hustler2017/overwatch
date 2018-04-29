@@ -127,6 +127,15 @@ if(isset($_POST['update'])){
             text-shadow: 1px 1px 2px black, 0 0 1em #53bfd8;
         }
 
+        .logo{
+            display: inline-block;
+            background-image: url(favicon.png);
+            background-repeat: no-repeat;
+            height: 130px;
+            width: 130px;
+            background-position: center;
+        }
+
     </style>
 </head>
 <body>
@@ -137,7 +146,7 @@ if(isset($_POST['update'])){
     margin: 20px;
     color: #00ceff;
     text-shadow: 1px 1px 2px black, 0 0 1em #53bfd8; /* Параметры тени */
-">OverWatch</div>
+">OverWatch <i class="logo"></i> </div>
 <div class="cols">
     <div class="weblancer">
         <div class="head">
