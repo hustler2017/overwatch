@@ -55,8 +55,13 @@ audio.src = 'Sound_18678.mp3';
             if(url === false)
                 return;
 
+
+            $.each(items, function(index, el){
+                $(el).removeClass('new');
+            });
+
             $.post(server,{update:classname, url: url},function(response){
-                if(response.ok) {
+                if(response instanceof Object && response.ok) {
                     update(response.list);
                 }
             },'json');
@@ -65,11 +70,6 @@ audio.src = 'Sound_18678.mp3';
         },15000);
 
 
-        $(window).on('focus', function(){
-            $.each(items, function(index, el){
-                $(el).removeClass('new');
-            });
-        });
 
     }
 })(jQuery);
@@ -127,8 +127,12 @@ audio.src = 'Sound_18678.mp3';
             if(url === false)
                 return;
 
+            $.each(items, function(index, el){
+                $(el).removeClass('new');
+            });
+
             $.post(server,{update:classname, url: url},function(response){
-                if(response.ok) {
+                if(response instanceof Object && response.ok) {
                     update(response.list);
                 }
             },'json');
@@ -137,11 +141,6 @@ audio.src = 'Sound_18678.mp3';
         },18000);
 
 
-        $(window).on('focus', function(){
-            $.each(items, function(index, el){
-                $(el).removeClass('new');
-            });
-        });
 
     }
 })(jQuery);
@@ -201,8 +200,12 @@ audio.src = 'Sound_18678.mp3';
             if(url === false)
                 return;
 
+            $.each(items, function(index, el){
+                $(el).removeClass('new');
+            });
+
             $.post(server,{update:classname, url: url},function(response){
-                if(response.ok) {
+                if(response instanceof Object && response.ok) {
                     update(response.list);
                 }
             },'json');
@@ -210,11 +213,7 @@ audio.src = 'Sound_18678.mp3';
 
         },30000);
 
-        $(window).on('focus', function(){
-            $.each(items, function(index, el){
-                $(el).removeClass('new');
-            });
-        });
+
 
     }
 })(jQuery);
@@ -273,18 +272,17 @@ audio.src = 'Sound_18678.mp3';
             if(url === false)
                 return;
 
+            $.each(items, function(index, el){
+                $(el).removeClass('new');
+            });
 
             $.post(server,{update:classname, url: url},function(response){
-                if(response.ok) {
+                if(response instanceof Object && response.ok) {
                     update(response.list);
                 }
             },'json');
 
-            $(window).on('focus', function(){
-                $.each(items, function(index, el){
-                    $(el).removeClass('new');
-                });
-            });
+
 
         },100000);
 
@@ -346,18 +344,17 @@ audio.src = 'Sound_18678.mp3';
             if(url === false)
                 return;
 
+            $.each(items, function(index, el){
+                $(el).removeClass('new');
+            });
 
             $.post(server,{update:classname, url: url},function(response){
-                if(response.ok) {
+                if(response instanceof Object && response.ok) {
                     update(response.list);
                 }
             },'json');
 
-            $(window).on('focus', function(){
-                $.each(items, function(index, el){
-                    $(el).removeClass('new');
-                });
-            });
+
 
         },25000);
 

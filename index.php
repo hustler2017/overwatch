@@ -128,12 +128,16 @@ if(isset($_POST['update'])){
         }
 
         .logo{
-            display: inline-block;
+            display: block;
             background-image: url(favicon.png);
             background-repeat: no-repeat;
-            height: 130px;
-            width: 130px;
+            height: 93px;
+            width: 96px;
+            margin: 0 auto;
             background-position: center;
+            background-size: contain;
+            position: relative;
+            top: 16px;
         }
 
     </style>
@@ -146,47 +150,23 @@ if(isset($_POST['update'])){
     margin: 20px;
     color: #00ceff;
     text-shadow: 1px 1px 2px black, 0 0 1em #53bfd8; /* Параметры тени */
-">OverWatch <i class="logo"></i> </div>
+">
+    <i class="logo"></i>
+    OverWatch
+</div>
+
 <div class="cols">
-    <div class="weblancer">
+    <div class="all">
         <div class="head">
             <a target="_blank" href="https://www.weblancer.net/">
                 weblancer.net
             </a>
-        </div>
-        <div class="content">
-            <ul class="list">
-
-            </ul>
-        </div>
-    </div>
-    <div class="freelansim">
-        <div class="head">
             <a target="_blank" href="https://freelansim.ru/">
                 freelansim.ru
             </a>
-        </div>
-        <div class="content">
-            <ul class="list">
-
-            </ul>
-        </div>
-    </div>
-    <div class="freelancehunt">
-        <div class="head">
             <a target="_blank" href="https://freelancehunt.com/">
                 freelancehunt.com
             </a>
-        </div>
-        <div class="content">
-            <ul class="list">
-
-            </ul>
-        </div>
-    </div>
-
-    <div class="freelanceru">
-        <div class="head">
             <a target="_blank" href="https://freelance.ru/">
                 freelance.ru
             </a>
@@ -197,9 +177,7 @@ if(isset($_POST['update'])){
             </ul>
         </div>
     </div>
-
 </div>
-
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -208,10 +186,10 @@ if(isset($_POST['update'])){
 <script src="js/bootstrap.js"></script>
 <script src="js/overwatch.js"></script>
 <script>
-    $('.weblancer > .content').overwatchWeblancer();
-    $('.freelansim > .content').overwatchFreelansim();
-    $('.freelanceru > .content').overwatchFreelanceru();
-    $('.freelancehunt > .content').overwatchFreelancehunt();
+    $('.all > .content').overwatchWeblancer();
+    $('.all > .content').overwatchFreelansim();
+    $('.all > .content').overwatchFreelanceru();
+    $('.all > .content').overwatchFreelancehunt();
 </script>
 </body>
 </html>
