@@ -112,7 +112,6 @@ if(isset($_POST['update'])){
             box-shadow: inset 0px 1px 2px 1px rgba(0,0,0,0.25);
         }
         .head{
-            height: 30px;
             color: white;
             background-color: #1876b8;
             text-align: center;
