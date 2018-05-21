@@ -239,6 +239,14 @@ function getExpiredDomains(){
 }
 
 function connect_database(){
+
+    if($_SERVER['HTTP_HOST'] == "localhost"){
+	    $mysqli = new mysqli("localhost", "root", "2312", "overwatch");
+    } else {
+	    $mysqli = new mysqli("localhost", "u0437_u0437588", "5367ayasdBJASHDB**asd*33###", "u0437588_one");
+    }
+
+
 	$mysqli = new mysqli("localhost", "root", "2312", "overwatch");
 	if ($mysqli->connect_errno) {
 		throw new Exception("Не удалось подключиться к MySQL: " . $mysqli->connect_error);
