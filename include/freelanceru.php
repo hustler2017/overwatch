@@ -15,7 +15,6 @@ function parseFreelanceru($html = ''){
 
 		$href = "https://freelance.ru".pq($link)->attr('href');
 
-
 		$id = (int)substr($href,-11,6);
 		$title =  $link->nodeValue;
 

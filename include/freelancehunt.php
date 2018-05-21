@@ -8,7 +8,6 @@
 function parseFreelancehunt($html = ''){
 
 	$document = phpQuery::newDocument($html);
-
 	$links = $document->find('a.bigger');
 
 
