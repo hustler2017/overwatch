@@ -139,10 +139,10 @@ main{
 .item .time{
     border-radius: 3px;
     background-color: #e1e5ea;
-    padding: 0 5px;
+    padding: 0 8px 0 5px;
     height: 16px;
     margin-right: auto;
-    width: 89px;
+    display: inline-block;
     color: #838383;
     font-size: 12px;
     font-weight:400;

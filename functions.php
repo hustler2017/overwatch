@@ -51,7 +51,20 @@ function saveItems($items, $domain)
 			{
 				$item[$key] = $mysqli->escape_string($item[$key]);
 			}
-			_query("INSERT INTO tbl_overwatch_results (domain_id, original_id, query_time, title, href) VALUES( {$domain['id']} , {$item['id']}, '".date("Y-m-d H:i:s",$current_time)."', '{$item['title']}', '{$item['href']}')");
+
+			$time = $item['time'];
+			if(date($time) == false)
+			{
+				$time = "null";
+			}
+			else
+			{
+				$time = "'".date("Y-m-d H:i:s",$time)."'";
+			}
+
+			$current = "'".date("Y-m-d H:i:s",$current_time)."'";
+
+			_query("INSERT INTO tbl_overwatch_results (domain_id, original_id, query_time, title, href, original_time) VALUES( {$domain['id']} , {$item['id']}, $current, '{$item['title']}', '{$item['href']}', $time)");
 		}
 	}
 }
@@ -115,14 +128,16 @@ function get_results()
 {
 	global $current_time;
 
-	$timestamp = $current_time - 60;
+	$timestamp = $current_time - 300;
 	if(isset($_POST['timestamp'])){
 		if(date($_POST['timestamp']) !== false){
 			$timestamp = $_POST['timestamp'];
 		}
 	}
 
-	$results = _getallquery("SELECT * FROM tbl_overwatch_results WHERE query_time > '".date("Y-m-d H:i:s",$timestamp)."'");
+	$last_update = "'".date("Y-m-d H:i:s",$timestamp)."'";
+
+	$results = _getallquery("SELECT * FROM tbl_overwatch_results WHERE  ( original_time IS NULL AND query_time > $last_update )  OR  ( original_time > $last_update)");
 
 	return $results;
 }
@@ -142,9 +157,36 @@ function items_layout($results)
 {
 	$layout = '';
 	foreach($results as $item){
-		$layout .= get_template('item',['href' => $item['href'], 'title' => $item['title'], 'domain' => $item['domain_id'] ]);
+
+		$timestamp = $item['original_time'] ? $item['original_time'] : $item['query_time'];
+		$timestamp = strtotime($timestamp);
+		$label = timePassed($timestamp);
+		if($item['original_time'] === null) {
+			$label = 'найдено ' . $label;
+		}
+
+		$layout .= get_template('item',['href' => $item['href'], 'title' => $item['title'], 'domain' => $item['domain_id'], 'time' => $timestamp, 'label' => $label ]);
 	}
 
 	return $layout;
 }
 
+
+function timePassed($timestamp)
+{
+	global $current_time;
+
+	$current = new DateTime("@$current_time");
+	$given = new DateTime("@$timestamp");
+	$interval = $current->diff($given);
+	if($interval->d){
+		return $interval->d." дней назад";
+	}
+	if($interval->h){
+		return $interval->h." часов назад";
+	}
+	if($interval->i){
+		return $interval->i." минут назад";
+	}
+	return $interval->s." секунд назад";
+}

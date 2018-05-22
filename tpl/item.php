@@ -8,7 +8,7 @@
  * $title
  * $href
  * $domain
- *
+ * $time
  */
 
 $domains_names = [
@@ -19,9 +19,8 @@ $domains_names = [
     5 => 'fl',
 ];
 
-
 ?>
 <div class="item <?= $domains_names[$domain] ?>">
-    <div class="time">~~ мин назад</div>
-    <a href="<?= $href ?>" class="title"><?= $title ?></a>
+    <div data-timestamp="<?= $time ?>" class="time"><?= $label ?></div>
+    <a target="_blank" href="<?= $href ?>" class="title"><?= $title ?></a>
 </div>

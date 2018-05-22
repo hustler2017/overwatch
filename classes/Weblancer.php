@@ -19,11 +19,13 @@ class Weblancer extends Parser
 		$id = (int)substr($href,-7,6);
 		$title = $anchor->nodeValue;
 
+		$timestamp = pq($anchor)->parent()->parent()->parent()->find('[data-timestamp]')->attr('data-timestamp');
+
 		return [
 			'id' => $id,
 			'title' => $title,
 			'href' => $href,
-			'time' => '',
+			'time' => $timestamp,
 			'description' => ''
 		];
 	}
