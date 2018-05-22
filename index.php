@@ -271,12 +271,17 @@ function getOldestQuery($domain)
 
 function saveItems($items, $domain)
 {
-	global $current_time;
+	global $current_time, $mysqli;
 
 	foreach($items as $item)
 	{
 		$row = _getquery("SELECT * FROM tbl_overwatch_results WHERE original_id = {$item['id']} AND domain_id={$domain['id']}");
 		if(empty($row)){
+
+		    foreach($item as $key => $value)
+            {
+	            $item[$key] = $mysqli->escape_string($item[$key]);
+            }
 			_query("INSERT INTO tbl_overwatch_results (domain_id, original_id, query_time, title, href) VALUES( {$domain['id']} , {$item['id']}, '".date("Y-m-d H:i:s",$current_time)."', '{$item['title']}', '{$item['href']}')");
 		}
 	}
