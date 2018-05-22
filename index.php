@@ -1,13 +1,13 @@
 <?php
 error_reporting(E_ERROR);
 
+include 'config.php';
+
+
 if(MAINTANCE) {
-    die('...технические работы...');
+	die('...технические работы...');
 }
 
-
-//   test
-include 'config.php';
 include 'libs/phpquery/phpQuery-onefile.php';
 include 'classes/Parser.php';
 include 'classes/Weblancer.php';
