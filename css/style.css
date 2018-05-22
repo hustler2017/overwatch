@@ -16,11 +16,13 @@ main{
 }
 
 .humster{
+    text-align: center;
     position: relative;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
+    padding-top: 15px;
 }
 .humster img{
-    width: 100%;
+    width: 70%;
     height:auto;
 }
 
