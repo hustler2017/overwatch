@@ -44,37 +44,39 @@
         <div id="sound" class="sound on"></div>
 	</div>
 
-	<div class="list">
-		<div class="header">
+    <div class="wrapper">
+        <div class="list">
+            <div class="header">
 
-			<div class="rialto weblancer">
-                <a href="#">Weblancer.net</a>
-			</div>
+                <div class="rialto weblancer">
+                    <a href="#">Weblancer.net</a>
+                </div>
 
-			<div class="rialto freelancim">
-                <a href="#">freelancim.ru</a>
-			</div>
+                <div class="rialto freelancim">
+                    <a href="#">freelancim.ru</a>
+                </div>
 
-			<div class="rialto freelancehunt">
-                <a href="#">freelancehunt.ru</a>
-			</div>
+                <div class="rialto freelancehunt">
+                    <a href="#">freelancehunt.ru</a>
+                </div>
 
-			<div class="rialto freelance">
-                <a href="#">freelance.ru</a>
-			</div>
+                <div class="rialto freelance">
+                    <a href="#">freelance.ru</a>
+                </div>
 
-			<div class="rialto fl">
-                <a href="#">fl.ru</a>
-			</div>
+                <div class="rialto fl">
+                    <a href="#">fl.ru</a>
+                </div>
 
-		</div>
+            </div>
 
-        <div class="items">
-            <?= $items ?>
+            <div class="items">
+                <?= $items ?>
+            </div>
+
         </div>
 
-	</div>
-
+    </div>
 </main>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
