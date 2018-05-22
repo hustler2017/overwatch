@@ -1,6 +1,7 @@
 <?php
 error_reporting(E_ERROR);
 
+include 'config.php';
 include 'libs/phpquery/phpQuery-onefile.php';
 include 'classes/Parser.php';
 include 'classes/Weblancer.php';
@@ -218,7 +219,7 @@ function page_layout($layout)
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.js"></script>
     <script>
-        var server = "<?= $_SERVER['HTTP_HOST'] ?>";
+        var server = "<?= DOMAIN ?>";
         var timestamp = <?= $GLOBALS['current_time'] ?>;
     </script>
     <script src="js/overwatch.js"></script>
@@ -241,7 +242,7 @@ function getExpiredDomains(){
 function connect_database(){
 
     if($_SERVER['HTTP_HOST'] == "localhost"){
-	    $mysqli = new mysqli("localhost", "root", "2312", "overwatch");
+	    $mysqli = new mysqli(DB_HOST, DB_LOGIN, DB_PASS, DB_NAME);
     } else {
 	    $mysqli = new mysqli("localhost", "u0437_u0437588", "5367ayasdBJASHDB**asd*33###", "u0437588_one");
     }
