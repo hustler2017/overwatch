@@ -1,6 +1,10 @@
 <?php
 error_reporting(E_ERROR);
 
+if(MAINTANCE) {
+    die('...технические работы...');
+}
+
 
 //   test
 include 'config.php';
