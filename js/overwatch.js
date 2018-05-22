@@ -10,11 +10,11 @@ audio.src = 'Sound_11500.wav';
                     console.log(response.diag);
                     timestamp = response.time;
                     audio.play();
-                    $('ul.list li').removeClass('new');
+                    $('.list .item').removeClass('new');
 
                     var $data = $(response.data);
                     $data.addClass('new');
-                    $data.prependTo('ul.list');
+                    $data.prependTo('.items');
                 }
 
             }

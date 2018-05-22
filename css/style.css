@@ -1,0 +1,162 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700');
+
+body{
+    background-color: #fcfafb;
+    font-family: 'PT Sans Narrow', sans-serif;
+}
+
+main{
+    max-width: 360px;
+    margin: 0 auto;
+}
+
+.humster{
+    position: relative;
+    padding-bottom: 10px;
+}
+.humster img{
+    width: 100%;
+    height:auto;
+}
+
+.sound{
+    position: absolute;
+    right:0;
+    width: 21px;
+    height: 19px;
+    background-image: url(../img/sound_off.png);
+    cursor:pointer;
+    bottom: 22px;
+}
+.sound.on{
+    background-image: url(../img/sound_on.png);
+}
+
+.list .header{
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 5px 5px 0 0;
+    background-color: #a2afc0;
+    padding: 3px 12px 4px 12px;
+}
+
+.list .header > .rialto{
+    flex-basis: 110px;
+    flex-grow: 0;
+    flex-shrink: 1;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 700;
+    text-transform: lowercase;
+    padding: 5px 0;
+}
+
+.list .header > .rialto:before{
+    content: '';
+    display: inline-block;
+    vertical-align: top;
+    width: 16px;
+    height: 16px;
+    margin-right: 3px;
+}
+.list .header > .rialto.weblancer a{
+    color: #cfebf6;
+}
+.item.weblancer .title{
+    background-color: #cfebf6;
+}
+.list .header > .rialto.weblancer:before,  .item.weblancer{
+    background-image: url(../img/weblancer-icon.png);
+}
+
+.list .header > .rialto.freelancehunt a{
+    color: #f6e9d2;
+}
+.list .header > .rialto.freelancehunt:before,  .item.freelancehunt{
+    background-image: url(../img/freelancehunt-icon.png);
+}
+.item.freelancehunt .title{
+    background-color: #f6e9d2;
+}
+
+.list .header > .rialto.freelancim a{
+    color: #c6f1eb;
+}
+.list .header > .rialto.freelancim:before,  .item.freelancim{
+    background-image: url(../img/freelancim-icon.png);
+}
+.item.freelancim .title{
+    background-color: #c6f1eb;
+}
+
+
+.list .header > .rialto.freelance a{
+    color: #e4f2d1;
+}
+.list .header > .rialto.freelance:before,  .item.freelance{
+    background-image: url(../img/freelance-icon.png);
+}
+.item.freelance .title{
+    background-color: #e4f2d1;
+}
+
+
+.list .header > .rialto.fl a{
+    color: #e4f2d1;
+}
+.list .header > .rialto.fl:before,  .item.fl{
+    background-image: url(../img/fl-icon.png);
+}
+.item.fl .title{
+    background-color: #e4f2d1;
+}
+
+
+.list .items{
+    background-color: #f3f6fa;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    min-height: 300px;
+    max-height: 400px;
+    border-radius: 0 0 5px 5px;
+    padding-top: 7px;
+}
+
+.item{
+    padding: 2px 2px 3px 33px;
+    background-position: 12px 2px;
+    background-repeat: no-repeat;
+    font-size: 0;
+}
+
+.item .time{
+    border-radius: 3px;
+    background-color: #e1e5ea;
+    padding: 0 5px;
+    height: 16px;
+    margin-right: auto;
+    width: 89px;
+    color: #838383;
+    font-size: 12px;
+    font-weight:400;
+    line-height: 16px;
+    vertical-align: top;
+}
+
+.item .title{
+    display: block;
+    font-size: 14px;
+    font-weight:400;
+    margin-top: 3px;
+    border-radius: 2px;
+    padding: 2px 5px;
+    color: black;
+    line-height: 20px;
+    min-height: 36px;
+}
+
+#mizon{
+    display: none;
+}
