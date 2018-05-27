@@ -10,6 +10,7 @@ class Parser
 {
 	public $domain = '';
 	public $anchor = '';
+	public $timeZoneOffset = 0;
 
 	public function get($query)
 	{

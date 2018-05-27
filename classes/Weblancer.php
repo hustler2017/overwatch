@@ -20,6 +20,7 @@ class Weblancer extends Parser
 		$title = $anchor->nodeValue;
 
 		$timestamp = pq($anchor)->parent()->parent()->parent()->find('[data-timestamp]')->attr('data-timestamp');
+		$timestamp += $this->timeZoneOffset * 60 * 60;
 
 		return [
 			'id' => $id,

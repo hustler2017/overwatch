@@ -31,12 +31,12 @@ main{
     right:0;
     width: 21px;
     height: 19px;
-    background-image: url(../img/sound_off.png);
+    background-image: url(../img/sound_on.png);
     cursor:pointer;
     bottom: 22px;
 }
 .sound.on{
-    background-image: url(../img/sound_on.png);
+    background-image: url(../img/sound_off.png);
 }
 
 .list .header{

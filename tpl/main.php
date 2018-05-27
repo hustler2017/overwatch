@@ -32,11 +32,7 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-<iframe id="mizon" width="0" height="0" src="https://www.youtube.com/embed/9nlw2GZUBg8?list=RD9nlw2GZUBg8&autoplay=1"
-        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="">
-</iframe>
-
+<div id="mizon"></div>
 <main>
 
 	<div class="humster">
@@ -49,23 +45,23 @@
         <div class="header">
 
             <div class="rialto weblancer">
-                <a href="#">Weblancer.net</a>
+                <a target="_blank" href="https://www.weblancer.net/">Weblancer.net</a>
             </div>
 
             <div class="rialto freelancim">
-                <a href="#">freelancim.ru</a>
+                <a target="_blank" href="https://freelansim.ru/">freelancim.ru</a>
             </div>
 
             <div class="rialto freelancehunt">
-                <a href="#">freelancehunt.ru</a>
+                <a target="_blank" href="https://freelancehunt.com/">freelancehunt.ru</a>
             </div>
 
             <div class="rialto freelance">
-                <a href="#">freelance.ru</a>
+                <a target="_blank" href="https://freelance.ru/">freelance.ru</a>
             </div>
 
             <div class="rialto fl">
-                <a href="#">fl.ru</a>
+                <a target="_blank" href="https://www.fl.ru/">fl.ru</a>
             </div>
 
         </div>
@@ -85,9 +81,11 @@
 <script>
     var server = "<?= $domain ?>";
     var timestamp = <?= $time ?>;
+    var time_offset = Date.now() / 1000 - timestamp;
 </script>
 
 <script src="js/overwatch.js"></script>
+<script src="https://www.youtube.com/iframe_api"></script>
 
 
 

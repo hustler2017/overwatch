@@ -55,14 +55,41 @@ audio.src = 'Sound_11500.wav';
             var ts = $(this).attr('data-timestamp');
             if(ts == '') return;
 
-            var timeLabel = timePassed(  div(Date.now(),  1000) - ts );
+            var timeLabel = timePassed(  div(Date.now(),  1000)- Math.floor(time_offset) - ts );
             $(this).html(timeLabel);
 
         });
     },60000);
 
 
+    $('#sound').click(function(){
+        if(player.isMuted()){
+            player.unMute();
+            $(this).addClass('on');
+        } else {
+            player.mute();
+            $(this).removeClass('on');
+        }
+    });
+
 
 
 
 })(jQuery);
+
+
+var player;
+function onPlayerReady(event) {
+    player.playVideo();
+}
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('mizon', {
+        height: '0',
+        width: '0',
+        videoId: 'Sw_pL1met_Q',
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': ''
+        }
+    });
+}
