@@ -38,6 +38,7 @@
 	<div class="humster">
 		<img src="http://www.neizvestniy-geniy.ru/images/works/photo/2012/05/615491_1.gif" alt="танцующий хомяк">
         <div id="sound" class="sound on"></div>
+        <div class="title-name">OVERWATCH</div>
 	</div>
 
 

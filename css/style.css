@@ -18,7 +18,7 @@ main{
 .humster{
     text-align: center;
     position: relative;
-    padding-bottom: 15px;
+    padding-bottom: 30px;
     padding-top: 15px;
 }
 .humster img{
@@ -164,4 +164,14 @@ main{
 
 #mizon{
     display: none;
+}
+
+.title-name{
+    text-transform: uppercase;
+    font-size: 24px;
+    position: absolute;
+    color: #a2afc0;
+    bottom: 10px;
+    text-align: center;
+    width: 100%;
 }
