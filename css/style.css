@@ -34,6 +34,7 @@ main{
     background-image: url(../img/sound_on.png);
     cursor:pointer;
     bottom: 22px;
+    z-index: 200;
 }
 .sound.on{
     background-image: url(../img/sound_off.png);
@@ -174,4 +175,5 @@ main{
     bottom: 10px;
     text-align: center;
     width: 100%;
+    z-index: 100;
 }
