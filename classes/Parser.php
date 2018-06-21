@@ -32,7 +32,9 @@ class Parser
 
 		$items = [];
 		foreach($anchors as $anchor){
-			$items[] = $this->parseItem($anchor);
+			if($item = $this->parseItem($anchor)){
+				$items[] = $item;
+			}
 		}
 
 		return $items;

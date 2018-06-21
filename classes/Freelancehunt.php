@@ -9,21 +9,24 @@
 class Freelancehunt extends Parser
 {
 	public $domain = 'https://freelancehunt.com';
-	public $anchor = 'a.bigger';
+	public $anchor = '#projects-html tr[data-published]';
 
 	public function parseItem($anchor)
 	{
-		$href = $this->domain.pq($anchor)->attr('href');
-		$id = (int)substr($href,-11,6);
-		$title = $anchor->nodeValue;
 
-		return [
-			'id' => $id,
-			'title' => $title,
-			'href' => $href,
-			'time' => '',
-			'description' => ''
-		];
+		$item = [];
+		$item['time'] = pq($anchor)->attr('data-published');
+		$a = pq($anchor)->find("a.visitable");
+		$item['href'] = $a->attr('href');
 
+		if(preg_match('/(\d+)\.html$/', $item['href'], $matches)){
+			$item['id'] = $matches[1];
+		} else {
+			return false;
+		}
+
+		$item['title'] = $a->elements[0]->nodeValue;
+
+		return $item;
 	}
 }
