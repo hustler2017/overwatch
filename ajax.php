@@ -6,6 +6,8 @@
  * Skype and email: averin.ilya@inbox.ru
  */
 define('OVERWATCH', true);
+define('ISAJAX',1);
+header("Access-Control-Allow-Origin: ".$_SERVER['HTTP_HOST']);
 
 include 'load.php';
 
@@ -14,12 +16,9 @@ try{
 		throw new Exception("технические работы");
 
 	$result = run($config);
-	echo get_template('main', [ 'items' => $result, 'message' => '' ]);
+	echo json_encode(array('error' => false, 'tasks' => $result));
 }
 catch(Exception $e)
 {
-	echo get_template('main', [ 'items' => [], 'message' => $e->getMessage() ]);
+	echo json_encode( array('error' => $e->getMessage() ));
 }
-
-
-

@@ -3,44 +3,31 @@ audio.src = 'Sound_11500.wav';
 
 (function($){
 
-    setInterval(function(){
-        $.post(server,{timestamp: timestamp},function(response){
-            if(response instanceof Object && response.ok) {
-                if(response.data){
-                    console.log(response.diag);
-                    timestamp = response.time;
-                    audio.play();
-                    $('.list .item').removeClass('new');
+    var old = new Array();
 
-                    var $data = $(response.data);
-                    $data.addClass('new');
-                    $data.prependTo('.items');
-                }
-
-            }
-        },'json');
-    }, 30000);
+    setInterval(updateTasks, 15000);
 
     function div(val, by){
         return (val - val % by) / by;
     }
 
     function timePassed(seconds){
-        var timestring = '';
 
-        var days = div(seconds, 60 * 60 * 24);
+        let timestring = '';
+
+        let days = div(seconds, 60 * 60 * 24);
         if(days){
             timestring += days + " дней назад";
             return timestring;
         }
 
-        var hs = div(seconds , 60 * 60);
+        let hs = div(seconds , 60 * 60);
         if(hs){
             timestring += hs + " часов назад";
             return timestring;
         }
 
-        var mins = div(seconds , 60);
+        let mins = div(seconds , 60);
         if(mins){
             timestring += mins + " минут назад";
             return timestring;
@@ -49,18 +36,6 @@ audio.src = 'Sound_11500.wav';
         timestring = seconds + " секунд назад";
         return timestring;
     }
-
-    setInterval(function(){
-        $('[data-timestamp]').each(function(){
-            var ts = $(this).attr('data-timestamp');
-            if(ts == '') return;
-
-            var timeLabel = timePassed(  div(Date.now(),  1000)- Math.floor(time_offset) - ts );
-            $(this).html(timeLabel);
-
-        });
-    },60000);
-
 
     $('#sound').click(function(){
         if(player.isMuted()){
@@ -73,7 +48,61 @@ audio.src = 'Sound_11500.wav';
     });
 
 
+    function updateTasks(){
+        $.post('ajax.php',{},function(response){
+            if(response instanceof Object) {
+                if(response.error){
+                    console.log(response.error);
+                    return;
+                }
+                if(response.tasks){
+                    let data = response.tasks;
+                    let layout = '';
 
+                    old = [];
+                    $('.item').each(function(){
+                        $(this).removeClass('new');
+                        old.push($(this).find('a').attr('href'));
+                    });
+
+                    let newItems = false;
+                    for(let i = 0; i < data.length; i++){
+
+
+                        let is_new =  isNew(data[i]);
+                        if( is_new ) {
+                            newItems = true;
+                        }
+
+                        layout += '<div class="item ' + data[i].domain + ( is_new ? ' new' : '' ) +
+                            '"><div data-timestamp="' + data[i].published +
+                            '" class="time">' + timePassed(   div(Date.now() / 1000)  - data[i].published ) + '</div><a target="_blank" href="' + data[i].url +
+                            '" class="title">' + data[i].title + '</a></div>';
+                    }
+                    if(newItems) audio.play();
+                    $('.items').html(layout);
+                }
+
+            }
+            updateTime();
+        },'json');
+    }
+
+    function updateTime(){
+        $('[data-timestamp]').each(function(){
+            let ts = Number($(this).attr('data-timestamp'));
+            let timeLabel = timePassed(  div(Date.now(),  1000) - ts );
+            $(this).html(timeLabel);
+        });
+    }
+
+    function isNew(item) {
+        return old.indexOf(item.url) == -1;
+    }
+
+    $(document).ready(function(){
+        updateTime();
+    });
 
 })(jQuery);
 

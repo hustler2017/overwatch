@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by Averin Ilya.
- * Date: 22.05.2018
- * Project: overwatch
- * Skype and email: averin.ilya@inbox.ru
+ *
  *
  * $items
  * $domain
@@ -18,7 +15,7 @@
 	<meta http-equiv="Cache-Control" content="no-store" />
 	<meta name="robots" content="nofollow" />
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-	<title>Bootstrap 101 Template</title>
+	<title>Overwatch - сканер досок объявлений</title>
 
 	<!-- Bootstrap -->
 	<link href="css/bootstrap.css" rel="stylesheet">
@@ -35,40 +32,20 @@
 <div id="mizon"></div>
 <main>
 
-	<div class="humster">
-		<img src="http://www.neizvestniy-geniy.ru/images/works/photo/2012/05/615491_1.gif" alt="танцующий хомяк">
-        <div id="sound" class="sound on"></div>
-        <div class="title-name">OVERWATCH</div>
-	</div>
-
-
+    <?php if(!empty($message)): ?>
+    <div class="message">
+        <?= $message ?>
+    </div>
+    <?php endif; ?>
     <div class="list">
-        <div class="header">
-
-            <div class="rialto weblancer">
-                <a target="_blank" href="https://www.weblancer.net/">Weblancer.net</a>
-            </div>
-
-            <div class="rialto freelancim">
-                <a target="_blank" href="https://freelansim.ru/">freelancim.ru</a>
-            </div>
-
-            <div class="rialto freelancehunt">
-                <a target="_blank" href="https://freelancehunt.com/">freelancehunt.ru</a>
-            </div>
-
-            <div class="rialto freelance">
-                <a target="_blank" href="https://freelance.ru/">freelance.ru</a>
-            </div>
-
-            <div class="rialto fl">
-                <a target="_blank" href="https://www.fl.ru/">fl.ru</a>
-            </div>
-
-        </div>
 
         <div class="items">
-			<?= $items ?>
+	        <?php foreach($items as $item): ?>
+                <div class="item <?= $item['domain'] ?>">
+                    <div data-timestamp="<?= $item['published']  ?>" class="time"></div>
+                    <a target="_blank" href="<?= $item['url']  ?>" class="title"><?= $item['title']  ?></a>
+                </div>
+	        <?php endforeach; ?>
         </div>
 
     </div>
@@ -79,12 +56,6 @@
 <script src="js/jquery.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.js"></script>
-<script>
-    var server = "<?= $domain ?>";
-    var timestamp = <?= $time ?>;
-    var time_offset = Date.now() / 1000 - timestamp;
-</script>
-
 <script src="js/overwatch.js"></script>
 <script src="https://www.youtube.com/iframe_api"></script>
 

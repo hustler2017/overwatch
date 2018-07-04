@@ -11,16 +11,15 @@
  * $time
  */
 
-$domains_names = [
-    1 => 'weblancer',
-    2 => 'freelancehunt',
-    3 => 'freelancim',
-    4 => 'freelance',
-    5 => 'fl',
-];
+/*
+'domain' => ''
+'url' => $href,
+'title' => $title,
+'published' => $published,
+'founded' => date("Y-m-d H:i:s"),
+'description' => ''
+ */
+
+
 
 ?>
-<div class="item <?= $domains_names[$domain] ?>">
-    <div data-timestamp="<?= $time ?>" class="time"><?= $label ?></div>
-    <a target="_blank" href="<?= $href ?>" class="title"><?= $title ?></a>
-</div>

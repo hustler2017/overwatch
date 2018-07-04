@@ -15,14 +15,14 @@ class Devhuman extends Parser
 	public function parseItem($anchor)
 	{
 		$href = $this->domain.pq($anchor)->attr('href');
-		$id = "";// там нет id (
 		$title =  $anchor->nodeValue;
 
 		return [
-			'id' => $id,
+			'domain' => 'weblancer',
+			'url' => $href,
 			'title' => $title,
-			'href' => $href,
-			'time' => '',
+			'published' => $published,
+			'founded' => date("Y-m-d H:i:s", time() ),
 			'description' => ''
 		];
 	}

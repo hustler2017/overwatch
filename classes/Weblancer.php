@@ -10,23 +10,26 @@ class Weblancer extends Parser
 {
 	public $domain = 'https://www.weblancer.net';
 	public $anchor = 'h2 > a.text-bold.show_visited';
+	public $targets = [
+		'/jobs/?page=1',
+		'/jobs/?page=2',
+		'/jobs/?page=3'
+	];
+	public $update_time = 20; // сек
 
 	public function parseItem($anchor)
 	{
 		$href = $this->domain.pq($anchor)->attr('href');
-		pq($anchor)->attr('href', $href);
-		pq($anchor)->attr('target',"_blank");
-		$id = (int)substr($href,-7,6);
 		$title = $anchor->nodeValue;
-
 		$timestamp = pq($anchor)->parent()->parent()->parent()->find('[data-timestamp]')->attr('data-timestamp');
-		$timestamp += $this->timeZoneOffset * 60 * 60;
+		$published = date("Y-m-d H:i:s", $timestamp);
 
 		return [
-			'id' => $id,
+			'domain' => 'weblancer',
+			'url' => $href,
 			'title' => $title,
-			'href' => $href,
-			'time' => $timestamp,
+			'published' => $published,
+			'founded' => date("Y-m-d H:i:s", time() ),
 			'description' => ''
 		];
 	}

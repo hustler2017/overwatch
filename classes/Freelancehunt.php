@@ -10,23 +10,26 @@ class Freelancehunt extends Parser
 {
 	public $domain = 'https://freelancehunt.com';
 	public $anchor = '#projects-html tr[data-published]';
+	public $targets = [
+		'/projects'
+	];
+	public $update_time = 20; // сек
 
 	public function parseItem($anchor)
 	{
-
-		$item = [];
-		$item['time'] = pq($anchor)->attr('data-published');
+		$timestamp = pq($anchor)->attr('data-published');
+		$published = date("Y-m-d H:i:s",$timestamp);
 		$a = pq($anchor)->find("a.visitable");
-		$item['href'] = $a->attr('href');
+		$title = $a->elements[0]->nodeValue;
+		$href = $this->domain.$a->attr('href');
 
-		if(preg_match('/(\d+)\.html$/', $item['href'], $matches)){
-			$item['id'] = $matches[1];
-		} else {
-			return false;
-		}
-
-		$item['title'] = $a->elements[0]->nodeValue;
-
-		return $item;
+		return [
+			'domain' => 'freelancehunt',
+			'url' => $href,
+			'title' => $title,
+			'published' => $published,
+			'founded' => date("Y-m-d H:i:s",time()),
+			'description' => ''
+		];
 	}
 }
