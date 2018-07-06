@@ -11,7 +11,8 @@ class Freelancehunt extends Parser
 	public $domain = 'https://freelancehunt.com';
 	public $anchor = '#projects-html tr[data-published]';
 	public $targets = [
-		'/projects'
+		'/projects',
+		'/projects?page=2'
 	];
 	public $update_time = 20; // сек
 

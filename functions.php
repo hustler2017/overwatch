@@ -70,5 +70,8 @@ function run($config){
 	$from_the_time =  $current_time - 1*60*60;
 	$tasks = DB::check_tasks($from_the_time);
 
+	DB::deleteOldTasks();
+
+
 	return $tasks;
 }

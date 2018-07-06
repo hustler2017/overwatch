@@ -72,7 +72,7 @@ class Fl extends Parser
 	{
 
 		$link = pq($anchor);
-		$href = $link->attr('href');
+		$href = $this->domain.$link->attr('href');
 		$title = $link->html();
 
 		$container = $link->parent()->parent();

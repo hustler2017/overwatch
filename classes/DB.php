@@ -134,4 +134,12 @@ class DB
 		$result = static::query($query);
 		return $result->fetch_row();
 	}
+
+
+
+	public static function deleteOldTasks()
+	{
+		$time = date("Y-m-d H:i:s", time() - 1*24*60*60 );
+		$res = DB::query("DELETE FROM tbl_overwatch_tasks WHERE published < '$time'");
+	}
 }
